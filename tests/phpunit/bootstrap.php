@@ -42,11 +42,6 @@ class GravityPDF_Universal_Selector_Unit_Tests_Bootstrap {
 		/* load Gravity PDF */
 		tests_add_filter( 'muplugins_loaded', [ $this, 'load' ] );
 
-		/* Migration fixer for PHPUnit 6 when not included in the WP Test Environment */
-		if ( ! is_file( $this->wp_tests_dir . '/includes/phpunit6-compat.php' ) && class_exists( 'PHPUnit\Runner\Version' ) ) {
-			require_once dirname( __FILE__ ) . '/phpunit6-compat.php';
-		}
-
 		/* load the WP testing environment */
 		require_once( $this->wp_tests_dir . '/includes/bootstrap.php' );
 	}
