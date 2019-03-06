@@ -19,9 +19,5 @@
     "psr-4": {
       "GFPDF\\Plugins\\Watermark\\": "src/"
     }
-  },
-  "scripts": {
-    "post-update-cmd": [
-    ]
   }
 }
