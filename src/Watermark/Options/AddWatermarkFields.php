@@ -124,7 +124,7 @@ class AddWatermarkFields {
 					'name'    => esc_html__( 'Image Watermark', 'gravity-pdf-watermark' ),
 					'type'    => 'upload',
 					'class'   => 'gfpdf-watermark',
-					'tooltip' => '<h6>' . esc_html__( 'Image Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'For the best results, ensure the image is the same dimensions as the Paper Size.', 'gravity-pdf-watermark' ),
+					'tooltip' => '<h6>' . esc_html__( 'Image Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'For the best results, ensure the image is the same dimensions as the Paper Size and use a transparent background.', 'gravity-pdf-watermark' ),
 				],
 
 				'watermark_text'      => [
