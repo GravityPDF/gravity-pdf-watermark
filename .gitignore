@@ -35,6 +35,9 @@ node_modules/*
 *.min.js
 *.map
 
+## Language File
+/languages/*.pot
+
 # Unit tests
 /tmp
 
