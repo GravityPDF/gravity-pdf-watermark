@@ -2,7 +2,7 @@
 
 namespace GFPDF\Plugins\Watermark;
 
-use GFPDF\Plugins\Watermark\TextWatermark\Options\AddTextWatermarkFields;
+use GFPDF\Plugins\Watermark\Watermark\Options\AddWatermarkFields;
 
 use GFPDF\Helper\Licensing\EDD_SL_Plugin_Updater;
 use GFPDF\Helper\Helper_Abstract_Addon;
@@ -10,6 +10,7 @@ use GFPDF\Helper\Helper_Singleton;
 use GFPDF\Helper\Helper_Logger;
 use GFPDF\Helper\Helper_Notices;
 
+use GFPDF\Plugins\Watermark\Watermark\Options\DisplayWatermark;
 use GPDFAPI;
 
 /**
@@ -67,7 +68,10 @@ class Bootstrap extends Helper_Abstract_Addon {
 		/* Register our classes and pass back up to the parent initialiser */
 		$classes = array_merge(
 			$classes,
-			[ new AddTextWatermarkFields( \GPDFAPI::get_misc_class() ) ]
+			[
+				new AddWatermarkFields( \GPDFAPI::get_misc_class() ),
+				new DisplayWatermark( \GPDFAPI::get_misc_class() ),
+			]
 		);
 
 		/* Run the setup */

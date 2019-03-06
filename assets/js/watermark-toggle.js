@@ -11,8 +11,7 @@
    * @since 1.0
    */
   function show () {
-    $('.gfpdf-watermark-text').show()
-    $('.gfpdf-watermark-text-font').show()
+    $('tr.gfpdf-watermark').show()
   }
 
   /**
@@ -21,8 +20,7 @@
    * @since 1.0
    */
   function hide () {
-    $('.gfpdf-watermark-text').hide().find('input').val('')
-    $('.gfpdf-watermark-text-font').hide().find('select').val('')
+    $('tr.gfpdf-watermark').hide()
   }
 
   $(function () {

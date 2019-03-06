@@ -1,6 +1,6 @@
 <?php
 
-namespace GFPDF\Plugins\Watermark\TextWatermark\Options;
+namespace GFPDF\Plugins\Watermark\Watermark\Options;
 
 use GFPDF\Helper\Helper_Trait_Logger;
 use GFPDF\Helper\Helper_Misc;
@@ -39,11 +39,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 */
 
 /**
- * Class AddTextWatermarkFields
+ * Class AddWatermarkFields
  *
  * @package GFPDF\Plugins\Watermark\TextWatermark\Options
  */
-class AddTextWatermarkFields {
+class AddWatermarkFields {
 
 	/**
 	 * @since 1.0
@@ -111,36 +111,58 @@ class AddTextWatermarkFields {
 			$options = \GPDFAPI::get_options_class();
 
 			$watermark_settings = [
-				'watermark_toggle' => [
-					'id'    => 'watermark_toggle',
-					'name'  => esc_html__( 'Watermark', 'gravity-pdf-watermark' ),
-					'desc'  => esc_html__( 'Enable Watermark in Preview', 'gravity-pdf-watermark' ),
-					'type'  => 'checkbox',
-					'class' => 'gfpdf-watermark-toggle',
+				'watermark_toggle'    => [
+					'id'      => 'watermark_toggle',
+					'name'    => esc_html__( 'Watermark', 'gravity-pdf-watermark' ),
+					'desc'    => esc_html__( 'Enable Watermark in PDF', 'gravity-pdf-watermark' ),
+					'type'    => 'checkbox',
+					'tooltip' => '<h6>' . esc_html__( 'Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'Toggle to display a text- or image-based watermark in the PDF (or both). When enabled, PDF/A-1b and PDF/X-1a formats are automatically disabled.', 'gravity-pdf-watermark' ),
 				],
 
-				'watermark_text' => [
-					'id'    => 'watermark_text',
-					'type'  => 'text',
-					'name'  => esc_html__( 'Watermark Text', 'gravity-pdf-watermark' ),
-					'class' => 'gfpdf-watermark-text gfpdf-hidden',
+				'watermark_image'     => [
+					'id'      => 'watermark_image',
+					'name'    => esc_html__( 'Image Watermark', 'gravity-pdf-watermark' ),
+					'type'    => 'upload',
+					'class'   => 'gfpdf-watermark',
+					'tooltip' => '<h6>' . esc_html__( 'Image Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'For the best results, ensure the image is the same dimensions as the Paper Size.', 'gravity-pdf-watermark' ),
+				],
+
+				'watermark_text'      => [
+					'id'      => 'watermark_text',
+					'type'    => 'text',
+					'name'    => esc_html__( 'Text Watermark', 'gravity-pdf-watermark' ),
+					'class'   => 'gfpdf-watermark',
+					'tooltip' => '<h6>' . esc_html__( 'Text Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'Provided the font supports it, any valid UTF-8 character can be used. HTML tags are not supported.', 'gravity-pdf-watermark' ),
 				],
 
 				'watermark_text_font' => [
 					'id'         => 'watermark_text_font',
-					'name'       => esc_html__( 'Watermark Font', 'gravity-pdf-watermark' ),
+					'name'       => esc_html__( 'Font', 'gravity-pdf-watermark' ),
 					'type'       => 'select',
 					'options'    => $options->get_installed_fonts(),
 					'std'        => $options->get_option( 'default_font' ),
 					'inputClass' => 'large',
 					'chosen'     => true,
-					'class'      => 'gfpdf-watermark-text-font gfpdf-hidden',
+					'class'      => 'gfpdf-watermark',
+				],
+
+				'watermark_opacity'   => [
+					'id'      => 'watermark_opacity',
+					'name'    => esc_html__( 'Opacity', 'gravity-pdf-watermark' ),
+					'desc2'   => '%',
+					'type'    => 'number',
+					'size'    => 'small',
+					'std'     => 20,
+					'min'     => 1,
+					'max'     => 100,
+					'class'   => 'gfpdf-watermark',
+					'tooltip' => '<h6>' . esc_html__( 'Opacity', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'Select a value between 0-100 to control the text and image watermark opacity. 0 = completely transparent; 100 = not transparent.', 'gravity-pdf-watermark' ),
 				],
 			];
 
 			$settings += $watermark_settings;
 
-			$this->logger->notice( 'Add "text watermark" fields to settings' );
+			$this->logger->notice( 'Add watermark fields to PDF settings' );
 		}
 
 		return $settings;
@@ -158,6 +180,8 @@ class AddTextWatermarkFields {
 				$version = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? time() : GFPDF_WATERMARK_VERSION;
 
 				wp_enqueue_script( 'gfpdf_js_watermark', plugins_url( 'assets/js/watermark-toggle.js', GFPDF_WATERMARK_FILE ), [ 'jquery' ], $version );
+
+				wp_enqueue_style( 'gfpdf_css_watermark', plugins_url( 'assets/css/watermark.css', GFPDF_WATERMARK_FILE ), [], $version );
 			}
 		}
 	}
