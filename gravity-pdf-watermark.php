@@ -67,7 +67,7 @@ class GPDF_Watermark_Checks {
 	 *
 	 * @since 1.0
 	 */
-	private $required_gravitypdf_version = '5.2.0';
+	private $required_gravitypdf_version = '5.1.5';
 
 	/**
 	 * Run our pre-checks and if it passes bootstrap the plugin
