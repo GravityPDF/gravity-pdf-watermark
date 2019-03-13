@@ -114,7 +114,7 @@ class AddWatermarkFields {
 				'watermark_toggle'    => [
 					'id'      => 'watermark_toggle',
 					'name'    => esc_html__( 'Watermark', 'gravity-pdf-watermark' ),
-					'desc'    => esc_html__( 'Enable Watermark in PDF', 'gravity-pdf-watermark' ),
+					'desc'    => esc_html__( 'Enable PDF Watermark', 'gravity-pdf-watermark' ),
 					'type'    => 'checkbox',
 					'tooltip' => '<h6>' . esc_html__( 'Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'Toggle to display a text- or image-based watermark in the PDF (or both). When enabled, PDF/A-1b and PDF/X-1a formats are automatically disabled.', 'gravity-pdf-watermark' ),
 				],
