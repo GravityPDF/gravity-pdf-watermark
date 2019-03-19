@@ -102,13 +102,16 @@ class DisplayWatermark {
 			$mpdf->PDFA = false;
 			$mpdf->PDFX = false;
 
-			$image   = ! empty( $settings['watermark_image'] ) ? $this->misc->convert_url_to_path( $settings['watermark_image'] ) : false;
+			$image   = ! empty( $settings['watermark_image'] ) ? $settings['watermark_image'] : false;
 			$text    = ! empty( $settings['watermark_text'] ) ? $settings['watermark_text'] : false;
 			$font    = ! empty( $settings['watermark_text_font'] ) ? $settings['watermark_text_font'] : 'DejavuSansCondensed';
 			$opacity = isset( $settings['watermark_opacity'] ) ? ( (float) $settings['watermark_opacity'] + 0.01 ) / 100 : 0.2;
 
 			/* Add the image watermark */
-			if ( $image !== false && is_file( $image ) ) {
+			$image_path = $this->misc->convert_url_to_path( $image );
+			if ( $image_path !== false && is_file( $image_path ) ) {
+				$mpdf->SetWatermarkImage( $image_path, $opacity );
+			} else {
 				$mpdf->SetWatermarkImage( $image, $opacity );
 			}
 
