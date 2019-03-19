@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Gravity PDF Watermark
  * Plugin URI:      https://gravitypdf.com/shop/watermark-add-on/
- * Description:     Easily add a watermark to any Gravity PDF-generated document
+ * Description:     Easily add a text or image watermark to any Gravity PDF-generated document.
  * Author:          Gravity PDF
  * Author URI:      https://gravitypdf.com
  * Text Domain:     gravity-pdf-watermark
