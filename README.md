@@ -1,6 +1,8 @@
 Gravity PDF Watermark
 ==========================
 
+![Cover Artwork](https://resources.gravitypdf.com/uploads/edd/2019/03/watermark-cover-artwork.png)
+
 [![Build Status](https://travis-ci.org/GravityPDF/gravity-pdf-watermark.svg?branch=development)](https://travis-ci.org/GravityPDF/gravity-pdf-watermark)
 
 Gravity PDF Watermark is a commercial plugin [available from GravityPDF.com](https://gravitypdf.com/shop/watermark-add-on/). The plugin is hosted here on a public GitHub repository in order to better facilitate community contributions from developers and users. If you have a suggestion, a bug report, or a patch for an issue, feel free to submit it here.
