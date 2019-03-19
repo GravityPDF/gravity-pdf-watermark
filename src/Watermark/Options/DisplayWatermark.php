@@ -111,7 +111,7 @@ class DisplayWatermark {
 			$image_path = $this->misc->convert_url_to_path( $image );
 			if ( $image_path !== false && is_file( $image_path ) ) {
 				$mpdf->SetWatermarkImage( $image_path, $opacity );
-			} else {
+			} elseif ( $image !== false ) {
 				$mpdf->SetWatermarkImage( $image, $opacity );
 			}
 
