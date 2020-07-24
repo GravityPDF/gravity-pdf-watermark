@@ -36,7 +36,7 @@ class TestDisplayWatermark extends WP_UnitTestCase {
 	 */
 	public function setUp() {
 
-		$this->class = new DisplayWatermark( \GPDFAPI::get_misc_class() );
+		$this->class = new DisplayWatermark( \GPDFAPI::get_misc_class(), \GPDFAPI::get_form_class() );
 		$this->class->set_logger( $GLOBALS['GFPDF_Test']->log );
 		$this->class->init();
 	}

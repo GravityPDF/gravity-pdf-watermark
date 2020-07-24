@@ -2,15 +2,13 @@
 
 namespace GFPDF\Plugins\Watermark\Watermark\Options;
 
-use GFPDF\Helper\Helper_Trait_Logger;
 use GFPDF\Helper\Helper_Misc;
-use Monolog\Logger;
+use GFPDF\Helper\Helper_Trait_Logger;
 
 /**
  * @package     Gravity PDF Watermark
  * @copyright   Copyright (c) 2020, Blue Liquid Designs
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
  */
 
 /* Exit if accessed directly */
@@ -107,12 +105,13 @@ class AddWatermarkFields {
 					'tooltip' => '<h6>' . esc_html__( 'Image Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'For the best results, ensure the image is the same dimensions as the Paper Size and use a transparent background.', 'gravity-pdf-watermark' ),
 				],
 
-				'watermark_text'      => [
-					'id'      => 'watermark_text',
-					'type'    => 'text',
-					'name'    => esc_html__( 'Text Watermark', 'gravity-pdf-watermark' ),
-					'class'   => 'gfpdf-watermark',
-					'tooltip' => '<h6>' . esc_html__( 'Text Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'Provided the font supports it, any valid UTF-8 character can be used. HTML tags are not supported.', 'gravity-pdf-watermark' ),
+				'watermark_text' => [
+					'id'         => 'watermark_text',
+					'type'       => 'text',
+					'name'       => esc_html__( 'Text Watermark', 'gravity-pdf-watermark' ),
+					'class'      => 'gfpdf-watermark',
+					'tooltip'    => '<h6>' . esc_html__( 'Text Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'Provided the font supports it, any valid UTF-8 character can be used. HTML tags are not supported.', 'gravity-pdf-watermark' ),
+					'inputClass' => 'merge-tag-support mt-hide_all_fields', /* add merge tag support */
 				],
 
 				'watermark_text_font' => [

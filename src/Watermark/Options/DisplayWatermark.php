@@ -2,15 +2,15 @@
 
 namespace GFPDF\Plugins\Watermark\Watermark\Options;
 
-use GFPDF\Helper\Helper_Trait_Logger;
+use GFPDF\Helper\Helper_Form;
 use GFPDF\Helper\Helper_Misc;
-use Monolog\Logger;
+use GFPDF\Helper\Helper_Trait_Logger;
+use Mpdf\Utils\UtfString;
 
 /**
  * @package     Gravity PDF Watermark
  * @copyright   Copyright (c) 2020, Blue Liquid Designs
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
  */
 
 /* Exit if accessed directly */
@@ -35,17 +35,26 @@ class DisplayWatermark {
 	 *
 	 * @since 1.0
 	 */
-	private $misc;
+	protected $misc;
+
+	/**
+	 * @var Helper_Form
+	 *
+	 * @since 1.1
+	 */
+	protected $gform;
 
 	/**
 	 * AddTextWatermarkFields constructor.
 	 *
 	 * @param Helper_Misc $misc
+	 * @param Helper_Form $gform
 	 *
 	 * @since 1.0
 	 */
-	public function __construct( Helper_Misc $misc ) {
-		$this->misc = $misc;
+	public function __construct( Helper_Misc $misc, Helper_Form $gform ) {
+		$this->misc  = $misc;
+		$this->gform = $gform;
 	}
 
 	/**
@@ -83,7 +92,7 @@ class DisplayWatermark {
 			$mpdf->PDFX = false;
 
 			$image   = ! empty( $settings['watermark_image'] ) ? $settings['watermark_image'] : false;
-			$text    = ! empty( $settings['watermark_text'] ) ? $settings['watermark_text'] : false;
+			$text    = ! empty( $settings['watermark_text'] ) ? $this->gform->process_tags( $settings['watermark_text'], $form, $entry ) : false;
 			$font    = ! empty( $settings['watermark_text_font'] ) ? $settings['watermark_text_font'] : 'DejavuSansCondensed';
 			$opacity = isset( $settings['watermark_opacity'] ) ? ( (float) $settings['watermark_opacity'] + 0.01 ) / 100 : 0.2;
 
@@ -96,6 +105,7 @@ class DisplayWatermark {
 			}
 
 			/* Add the text watermark */
+			$text = UtfString::strcode2utf( htmlspecialchars_decode( $text, ENT_QUOTES ) );
 			$mpdf->SetWatermarkText( $text, $opacity );
 			$mpdf->watermark_font = $font;
 		}
