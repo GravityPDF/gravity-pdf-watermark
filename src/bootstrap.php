@@ -3,6 +3,7 @@
 namespace GFPDF\Plugins\Watermark;
 
 use GFPDF\Plugins\Watermark\Watermark\Options\AddWatermarkFields;
+use GFPDF\Plugins\Watermark\Watermark\Options\DisplayWatermark;
 
 use GFPDF\Helper\Licensing\EDD_SL_Plugin_Updater;
 use GFPDF\Helper\Helper_Abstract_Addon;
@@ -10,14 +11,12 @@ use GFPDF\Helper\Helper_Singleton;
 use GFPDF\Helper\Helper_Logger;
 use GFPDF\Helper\Helper_Notices;
 
-use GFPDF\Plugins\Watermark\Watermark\Options\DisplayWatermark;
 use GPDFAPI;
 
 /**
  * @package     Gravity PDF Watermark
  * @copyright   Copyright (c) 2020, Blue Liquid Designs
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
  */
 
 /* Exit if accessed directly */
@@ -50,7 +49,7 @@ class Bootstrap extends Helper_Abstract_Addon {
 			$classes,
 			[
 				new AddWatermarkFields( \GPDFAPI::get_misc_class() ),
-				new DisplayWatermark( \GPDFAPI::get_misc_class() ),
+				new DisplayWatermark( \GPDFAPI::get_misc_class(), \GPDFAPI::get_form_class() ),
 			]
 		);
 
