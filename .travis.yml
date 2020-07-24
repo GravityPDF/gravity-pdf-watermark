@@ -12,15 +12,16 @@ php:
 - 7.1
 - 7.2
 - 7.3
+- 7.4
 
 env:
 - WP_VERSION=latest WP_MULTISITE=0
 
 matrix:
   include:
-  - php: 7.3
+  - php: 7.4
     env: WP_VERSION=latest WP_MULTISITE=1 COVERAGE=1
-  - php: 7.3
+  - php: 7.4
     env: LINT=1
 
 before_install:
@@ -38,7 +39,7 @@ before_script:
 - if [[ "$COVERAGE" != "1" ]]; then phpenv config-rm xdebug.ini; fi
 - if find . -name "*.php" -exec php -l {} \; | grep "unexpected $end"; then exit 1; fi
 - composer install --prefer-source --optimize-autoloader --no-scripts
-- bash tests/bin/install.sh gravitypdf_test root '' localhost $WP_VERSION
+- bash bin/install-wp-tests.sh gravitypdf_test root '' localhost $WP_VERSION
 
 script:
 - |
