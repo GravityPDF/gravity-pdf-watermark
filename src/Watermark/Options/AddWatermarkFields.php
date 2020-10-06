@@ -94,7 +94,7 @@ class AddWatermarkFields {
 					'name'    => esc_html__( 'Watermark', 'gravity-pdf-watermark' ),
 					'desc'    => esc_html__( 'Enable PDF Watermark', 'gravity-pdf-watermark' ),
 					'type'    => 'checkbox',
-					'tooltip' => '<h6>' . esc_html__( 'Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'Toggle to display a text- or image-based watermark in the PDF (or both). When enabled, PDF/A-1b and PDF/X-1a formats are automatically disabled.', 'gravity-pdf-watermark' ),
+					'tooltip' => '<h6>' . esc_html__( 'Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'Toggle to display a text- or image-based watermark in the PDF (or both). When enabled, PDF/A-1b and PDF/X-1a formats are automatically disabled (regardless of the PDF Format you choose).', 'gravity-pdf-watermark' ),
 				],
 
 				'watermark_image'     => [
@@ -105,7 +105,7 @@ class AddWatermarkFields {
 					'tooltip' => '<h6>' . esc_html__( 'Image Watermark', 'gravity-pdf-watermark' ) . '</h6>' . esc_html__( 'For the best results, ensure the image is the same dimensions as the Paper Size and use a transparent background.', 'gravity-pdf-watermark' ),
 				],
 
-				'watermark_text' => [
+				'watermark_text'      => [
 					'id'         => 'watermark_text',
 					'type'       => 'text',
 					'name'       => esc_html__( 'Text Watermark', 'gravity-pdf-watermark' ),
@@ -121,7 +121,7 @@ class AddWatermarkFields {
 					'options'    => $options->get_installed_fonts(),
 					'std'        => $options->get_option( 'default_font' ),
 					'inputClass' => 'large',
-					'chosen'     => true,
+					'chosen'     => version_compare( PDF_EXTENDED_VERSION, '6.0.0-beta1', '<' ),
 					'class'      => 'gfpdf-watermark',
 				],
 
