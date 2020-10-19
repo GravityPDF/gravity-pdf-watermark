@@ -5,7 +5,6 @@ namespace GFPDF\Plugins\Watermark\Watermark\Options;
 use GFPDF\Helper\Helper_Form;
 use GFPDF\Helper\Helper_Misc;
 use GFPDF\Helper\Helper_Trait_Logger;
-use Mpdf\Utils\UtfString;
 
 /**
  * @package     Gravity PDF Watermark
@@ -105,7 +104,8 @@ class DisplayWatermark {
 			}
 
 			/* Add the text watermark */
-			$text = UtfString::strcode2utf( htmlspecialchars_decode( $text, ENT_QUOTES ) );
+			$namespace = version_compare( PDF_EXTENDED_VERSION, '6.0.0-beta1', '<' ) ? '\\Mpdf\\Utils\\UtfString' : '\\GFPDF_Vendor\\Mpdf\\Utils\\UtfString';
+			$text      = $namespace::strcode2utf( htmlspecialchars_decode( $text, ENT_QUOTES ) );
 			$mpdf->SetWatermarkText( $text, $opacity );
 			$mpdf->watermark_font = $font;
 		}
