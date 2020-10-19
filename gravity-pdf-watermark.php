@@ -8,7 +8,7 @@
  * Author URI:      https://gravitypdf.com
  * Text Domain:     gravity-pdf-watermark
  * Domain Path:     /languages
- * Version:         1.1.0
+ * Version:         1.2.0
  */
 
 /**
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'GFPDF_WATERMARK_FILE', __FILE__ );
-define( 'GFPDF_WATERMARK_VERSION', '1.1.0' );
+define( 'GFPDF_WATERMARK_VERSION', '1.2.0' );
 
 /**
  * Class GPDF_Watermark_Checks

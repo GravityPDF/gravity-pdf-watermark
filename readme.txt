@@ -8,6 +8,9 @@ User's with a valid, active license key can receive support for this plugin by f
 
 == Changelog ==
 
+= Version 1.2.0, October 22, 2020 =
+* Add support for Gravity PDF 6.0
+
 = Version 1.1.0, July 24, 2020 =
 * Add merge tag support to the Text Watermark setting
 
